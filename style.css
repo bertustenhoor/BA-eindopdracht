@@ -1,0 +1,205 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+    padding-top: 70px;
+}
+
+/* Navigatie menu */
+
+ul {
+    list-style-type: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: larger;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+
+  .active {
+      background-color: dodgerblue;
+  }
+
+  /* Main content onderdelen */
+
+  .main-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+      letter-spacing: 6px;
+      color: dodgerblue;
+      text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin-top: 16px;
+  }
+
+  .text-block > h2 {
+    padding-top: 12px;
+    text-align: start;
+  }
+
+  .text-block > p {
+    padding-top: 8px;
+  }
+
+  .section-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  figure.inline {
+    display: inline;
+    padding: 20px;
+  }
+
+  .icon {
+    box-shadow: 4px 4px 4px gainsboro;
+  }
+
+  table {
+    background-color: gainsboro;
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    width: fit-content;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-items: center;
+  }
+
+  th {
+    text-align: right;
+    font-weight: normal;
+  }
+
+  .th-kop {
+    text-align: center;
+    color: dodgerblue;
+    margin-top: 8px;
+  }
+
+  .lange-kop {
+    font-size: 1em;
+    font-weight: normal;
+  }
+
+  td {
+    text-align: end;
+    margin-left: 16px;
+  }
+
+  input, select {
+    width: 300px;
+    padding:8px 12px;
+    border-radius: 4px;
+    border: none;
+    color: gray;
+    font-size: 1.2em;
+  }
+
+  input[type=number] {
+    text-align: end;
+  }
+
+  /* TODO: button nog centreren binnen flexbox... */
+
+  .form-button {
+    display: inline-block;
+    width: fit-content;
+    padding: 8px 16px;
+    margin-top: 16px;
+    background-color: dodgerblue;
+    font-size: 16px;
+    color: white;
+    border-radius: 8px;
+  }
+
+  .result th {
+    font-weight: bold;
+    color: black;
+  }
+
+  .result td {
+    font-weight: bold;
+    color: white;
+    padding-left: 24px;
+  }
+
+  .extra-head {
+    text-align: center; 
+    color: dodgerblue !important; 
+    padding-bottom: 8px;
+  }
+
+   /* footer section */
+
+  footer {
+    /* position: fixed;
+    left: 0;
+    bottom: 0; */
+    margin-top: 24px;
+    width: 100%;
+    padding: 10px;
+    background-color: dodgerblue;
+    color: #333;
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-footer {
+    margin-left: auto;
+  }
+
+  .p-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: smaller;
+    margin-left: auto;
+  }
+
+  /* intake table */
+
+ 
