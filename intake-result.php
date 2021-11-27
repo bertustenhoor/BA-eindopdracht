@@ -18,6 +18,9 @@ if ($_POST) {
     $stmt->bindValue(':id', $_POST['id']);
 
     $stmt->execute();
+} else {
+    //only available after intake-step2.php
+    die('illegal access!');
 }
 
 $data = $pdo->query("SELECT * FROM intake ORDER BY id DESC LIMIT 1")->fetch();
@@ -43,7 +46,7 @@ switch ($totaalWaardeAttrGoederen) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
@@ -59,7 +62,7 @@ switch ($totaalWaardeAttrGoederen) {
             <li><a href="./index.php">home</a></li>
             <li class="active"><a href="./intake.php">intake document</a></li>
             <li><a href="./onderhoud.php">onderhoud</a></li>
-            <li style="float: right;"><a href="./login.php">login</a></li>
+            <li style="float: right;"><a href="./login.php"><?= (isset($_SESSION['user'])) ? 'logout' : 'login' ?></a></li>
         </ul>
     </nav>
     <main>
@@ -108,16 +111,15 @@ switch ($totaalWaardeAttrGoederen) {
                     </tr>
                     <tr>
                         <th>Vastgestelde risicoklasse: </th>
-                        <td><?= $risicoKlasse ?></td>
+                        <td><strong>?= $risicoKlasse ?></strong></td>
                     </tr>
                 </table>
             </div>
-            <h2>Uw risicoklasse is <?= $risicoKlasse ?></h2>
 
     </main>
     <footer>
         <p class="p-center">Copyright BtH - 2021</p>
-        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer" height="50">
+        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer">
     </footer>
 </body>
 

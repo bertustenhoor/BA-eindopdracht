@@ -1,6 +1,17 @@
 <?php
 
+session_start();
 
+//only available after login
+if (!isset($_SESSION['user'])) {
+
+    //come back after login
+    $_SESSION['return_page'] = 'onderhoud.php';
+
+    //go to login page
+    header('location: login.php');
+    exit;
+}
 
 ?>
 
@@ -21,7 +32,7 @@
             <li><a href="./index.php">home</a></li>
             <li><a href="./intake.php">intake document</a></li>
             <li class="active"><a href="./onderhoud.php">onderhoud</a></li>
-            <li style="float: right;"><a href="./login.php">login</a></li>
+            <li style="float: right;"><a href="./login.php"><?= (isset($_SESSION['user'])) ? 'logout' : 'login' ?></a></li>
         </ul>
     </nav>
     <main>
@@ -33,7 +44,7 @@
     </main>
     <footer>
         <p class="p-center">Copyright BtH - 2021</p>
-        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer" height="50">
+        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer">
     </footer>
 </body>
 

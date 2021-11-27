@@ -1,5 +1,11 @@
+<?php 
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +21,7 @@
             <li class="active"><a href="./index.php">home</a></li>
             <li><a href="./intake.php">intake document</a></li>
             <li><a href="./onderhoud.php">onderhoud</a></li>
-            <li style="float: right;"><a href="./login.php">login</a></li>
+            <li style="float: right;"><a href="./login.php"><?= (isset($_SESSION['user'])) ? 'logout' : 'login' ?></a></li>
         </ul>
     </nav>
     <main>
@@ -48,7 +54,7 @@
                 </div>
             </section>
             <section class="section-content">
-                <figure class="inline"><a href="./onderhoud.png"><img src="./img/bug.png" class="icon" alt="hack"></a></figure>
+                <figure class="inline"><a href="./onderhoud.php"><img src="./img/bug.png" class="icon" alt="hack"></a></figure>
                 <div class="text-block">
                     <h2>Onderhoud: verplicht & verstandig!</h2>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus, cum nulla? Asperiores tenetur, id officiis laborum iste, ullam,
@@ -61,7 +67,7 @@
     </main>
     <footer>
         <p class="p-center">Copyright BtH - 2021</p>
-        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer" height="50">
+        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer">
     </footer>
 </body>
 

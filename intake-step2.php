@@ -21,16 +21,21 @@ if ($_POST) {
     $stmt->bindValue(':klPlaats', $_POST['klPlaats']);
 
     $stmt->execute();
+} else {
+    //only entrance via intake.php
+    die('illegal access');
 }
 
+//last entry to use in next step (this one)
 $data = $pdo->query("SELECT * FROM intake ORDER BY id DESC LIMIT 1")->fetch();
 
+//create a projectnumber
 $projectNummer = '2021' . str_pad($data['id'], 4, '0', STR_PAD_LEFT);
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
@@ -46,7 +51,7 @@ $projectNummer = '2021' . str_pad($data['id'], 4, '0', STR_PAD_LEFT);
             <li><a href="./index.php">home</a></li>
             <li class="active"><a href="./intake.php">intake document</a></li>
             <li><a href="./onderhoud.php">onderhoud</a></li>
-            <li style="float: right;"><a href="./login.php">login</a></li>
+            <li style="float: right;"><a href="./login.php"><?= (isset($_SESSION['user'])) ? 'logout' : 'login' ?></a></li>
         </ul>
     </nav>
     <main>
@@ -85,7 +90,6 @@ $projectNummer = '2021' . str_pad($data['id'], 4, '0', STR_PAD_LEFT);
                     <?php endif ?>
                 </table>
                 <div>
-                    <!-- <input type="submit" name="submit" value="Vorige stap" class="form-button"> // TODO: implement!!! -->
                     <input type="submit" name="submit" value="Volgende stap" class="form-button">
                 </div>
             </form>
@@ -93,7 +97,7 @@ $projectNummer = '2021' . str_pad($data['id'], 4, '0', STR_PAD_LEFT);
     </main>
     <footer>
         <p class="p-center">Copyright BtH - 2021</p>
-        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer" height="50">
+        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer">
     </footer>
 </body>
 

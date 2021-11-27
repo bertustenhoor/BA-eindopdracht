@@ -1,15 +1,19 @@
 <?php
 
-require 'connection.php';
+session_start();
 
-// handling nodig bij het opvragen van ALLE gegevens, dit kan alleen na inlog
-// onderstaande $_GET is uitsluitend voor gebruik van de stap terug knop
+//only available after login
+if (!isset($_SESSION['user'])) {
 
-if ($_GET) {
-    $klantId = $_GET['id'];
+    //come back here after correct login
+    $_SESSION['return_page'] = 'intake.php';
 
-    $data = $pdo->query("SELECT * FROM intake WHERE id=$klantId");
+    //goto login page
+    header('location: login.php');
+    exit;
 }
+
+require 'connection.php';
 
 ?>
 
@@ -30,7 +34,7 @@ if ($_GET) {
             <li><a href="./index.php">home</a></li>
             <li class="active"><a href="./intake.php">intake document</a></li>
             <li><a href="./onderhoud.php">onderhoud</a></li>
-            <li style="float: right;"><a href="./login.php">login</a></li>
+            <li style="float: right;"><a href="./login.php"><?= (isset($_SESSION['user'])) ? 'logout' : 'login' ?></a></li>
         </ul>
     </nav>
     <main>
@@ -42,13 +46,13 @@ if ($_GET) {
             <!-- TODO: gegevensvalidatie van de ingevoerde velden! -->
 
             <form action="intake-step2.php" method="post">
+            <input type="hidden" name="id" value=<?= isset($data['id']) ? $data['id'] : '' ?>>
                 <div class="container">
                     <table>
-                        <input type="hidden" name="id" value=<?= isset($data['id']) ? $data['id'] : '' ?>>
                         <tr>
                             <th>Klant</th>
                             <td>
-                                <select name="klType" id="klType">
+                                <select name="klType" id="klType" required>
                                     <option value="">maak een keuze</option>
                                     <option value="particulier" <?= (isset($data['kl_type']) && $data['kl_type'] == 'particulier') ? 'selected="selected"' : '' ?>>particulier</option>
                                     <option value="zakelijk" <?= (isset($data['kl_type']) && $data['kl_type'] == 'zakelijk') ? 'selected="selected"' : '' ?>>zakelijk</option>
@@ -116,7 +120,7 @@ if ($_GET) {
     </main>
     <footer>
         <p class="p-center">Copyright BtH - 2021</p>
-        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer" height="50">
+        <img src="./img/logoRSEB.png" alt="logo RSE beveiliging" class="logo-footer">
     </footer>
 </body>
 
